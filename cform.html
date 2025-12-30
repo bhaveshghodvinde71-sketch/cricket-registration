@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cricket Player Registration</title>
+
+<style>
+:root{
+  --primary:#55c03a;
+  --secondary:#41b0b8;
+  --white:#ffffff;
+}
+
+*{
+  box-sizing:border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body{
+  background: linear-gradient(135deg,#a4cc13,#f1f8e9);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.container{
+  background:var(--white);
+  max-width:420px;
+  width:100%;
+  padding:25px;
+  border-radius:16px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.15);
+}
+
+h2{
+  text-align:center;
+  color:var(--primary);
+}
+
+.subtitle{
+  text-align:center;
+  font-size:14px;
+  color:#666;
+  margin-bottom:20px;
+}
+
+label{
+  font-size:13px;
+  font-weight:500;
+}
+
+input, select{
+  width:100%;
+  padding:12px;
+  margin:6px 0 14px;
+  border-radius:8px;
+  border:1px solid #df50c3;
+}
+
+button{
+  width:100%;
+  padding:13px;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  border:none;
+  border-radius:30px;
+  color:rgb(0, 0, 0);
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.qr{
+  display:block;
+  margin:15px auto;
+  width:160px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2> HOLI PRIMERA LEAGUE </h2>
+  <h2>🏏 Player Registration</h2>
+  <p class="subtitle">Scan • Fill • Play</p>
+
+  <img class="qr"
+   src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://your-form-url">
+
+  <form id="form">
+
+    <label>Player Name</label>
+    <input id="name" required>
+
+    <label>Phone Number</label>
+    <input id="phone" required>
+
+    <label>Age</label>
+    <input id="age" type="number" required>
+
+    <label>Playing Skill</label>
+    <select id="skill" required>
+      <option value="">Select</option>
+      <option>Bowler</option>
+      <option>Batsman</option>
+      <option>All-Rounder</option>
+      <option>Wicket-Keeper</option>
+    </select>
+
+    <label>T-Shirt Size</label>
+    <select id="tshirt" required>
+      <option value="">Select</option>
+      <option>S</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
+      <option>XXL</option>
+    </select>
+
+    <button type="submit">Register Now</button>
+    <H4>ALL RIGHTS RESERVED BY BHAVESH GHODVINDE</H4>
+  </form>
+
+</div>
+<script>
+const URL = "https://script.google.com/macros/s/AKfycbwiF3jedrRXq3PBA2Jji56WuAUoVsp_IaqLjwUz_52xcGHrQuVJgTEPWzrBgwGmy7YT/exec";
+
+document.getElementById("form").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const phoneVal = document.getElementById("phone").value;
+
+  if(!/^[6-9]\d{9}$/.test(phoneVal)){
+    alert("❌ Invalid phone number");
+    return;
+  }
+
+  fetch(URL,{
+    method:"POST",
+    body:JSON.stringify({
+      name: document.getElementById("name").value,
+      phone: phoneVal,
+      age: document.getElementById("age").value,
+      skill: document.getElementById("skill").value,
+      tshirt: document.getElementById("tshirt").value
+    })
+  })
+  .then(()=>{
+    alert("✅ Registration Successful!");
+    document.getElementById("form").reset();
+  })
+  .catch(()=>{
+    alert("❌ Submission failed");
+  });
+});
+</script>
+
+<script>
+const URL = "https://script.google.com/macros/s/AKfycbwiF3jedrRXq3PBA2Jji56WuAUoVsp_IaqLjwUz_52xcGHrQuVJgTEPWzrBgwGmy7YT/exec";
+
+document.getElementById("form").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  if(!/^[6-9]\d{9}$/.test(phone.value)){
+    alert("❌ Invalid phone number");
+    return;
+  }
+
+  fetch(URL,{
+    method:"POST",
+    body:JSON.stringify({
+      name:name.value,
+      phone:phone.value,
+      age:age.value,
+      skill:skill.value,
+      tshirt:tshirt.value
+    })
+  })
+  .then(()=>{
+    alert("✅ Registration Successful!");
+    form.reset();
+  })
+  .catch(()=>{
+    alert("❌ Submission failed");
+  });
+});
+</script>
+
+</body>
+</html>
